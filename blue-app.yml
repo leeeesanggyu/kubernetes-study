@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: blue-green-app
+  name: blue-app
   labels:			# labels 지정
     app: blue-app
 spec:
