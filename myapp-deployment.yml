@@ -4,8 +4,10 @@ metadata:
   name: my-app
   labels:
     app: my-app
+  annotations:
+    kubernetes.io/change-cause: "initial image 1.0"
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: my-app
@@ -13,7 +15,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 2
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -21,7 +23,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: yoonjeong/my-app:2.0
+        image: yoonjeong/my-app:1.0
         ports:
         - containerPort: 8080
         resources:
