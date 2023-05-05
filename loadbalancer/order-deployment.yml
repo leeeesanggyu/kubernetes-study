@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  namespace: snackbar
+  labels:
+    service: order
+    project: snackbar
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: order
+      project: snackbar
+  template:
+    metadata:
+      labels:
+        service: order
+        project: snackbar
+    spec:
+      containers:
+      - name: order
+        image: yoonjeong/order:1.0
+        ports:
+          - containerPort: 8080
