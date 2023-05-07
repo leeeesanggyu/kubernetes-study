@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: unhealthy
+  labels:
+    app: myapp
+
+spec:
+  containers:
+  - name: unhealthy
+    image: yoonjeong/unhealthy-app:1.0
+    ports:
+    - containerPort: 8080
+    readinessProbe:
+      exec:                     # 컨테이너에서 실행할 명령어 probe
+        command:
+          - ls
+          - /var/ready
+      initialDelaySeconds: 60   # 컨테이너 시작 후 몇초 후에 probe를 시작할 것인가
+      periodSeconds: 5          # probe 실행 주기
+      successThreshold: 1       # 몇개 성공 시 실패 횟수를 초기화할 것인가
+      failureThreshold: 1       # 연속으로 몇번 실패 했을때 파드가 준비되지 않았다고 표시할 것인가
+      timeoutSeconds: 10        # 응답을 몇초만에 받아야 하는가
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "50m"
