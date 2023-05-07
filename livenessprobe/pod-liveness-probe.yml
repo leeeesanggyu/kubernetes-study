@@ -44,11 +44,11 @@ spec:
         httpGet:
           path: /
           port: 8080
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        successThreshold: 1
-        failureThreshold: 1
-        timeoutSeconds: 10
+        initialDelaySeconds: 60 # 컨테이너 시작 후 몇초 후에 probe를 시작할 것인가
+        periodSeconds: 5        # probe 실행 주기
+        successThreshold: 1     # 몇개 성공 시 실패 횟수를 초기화할 것인가
+        failureThreshold: 1     # 연속으로 몇번 실패 했을때 컨테이너를 재시작할 것인가
+        timeoutSeconds: 10      # 응답을 몇초만에 받아야 하는가
       resources:
         limits:
           memory: "64Mi"
