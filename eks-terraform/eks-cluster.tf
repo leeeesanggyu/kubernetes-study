@@ -7,13 +7,13 @@ resource "aws_eks_cluster" "test-eks-cluster" {
 
   name     = var.cluster-name
   role_arn = aws_iam_role.test-iam-role-eks-cluster.arn
-  version = "1.21"
+  version = "1.26"
 
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   vpc_config {
     security_group_ids = [aws_security_group.test-sg-eks-cluster.id]
-    subnet_ids         = ["<Subnet ID 1>","<Subnet ID 2>"]
+    subnet_ids         = ["subnet-06c1620b8ca92943d","subnet-089269c1c596da59e"]
     endpoint_public_access = true
   }
 }
