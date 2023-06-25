@@ -7,3 +7,8 @@ eks-terraformer/backend/.terraform
 eks-terraformer/backend/.terraform*
 eks-terraformer/backend/terraform*
 eks-terraformer/backend/terraform.*
+
+/eks-terraformer/terrafomer/.terraform
+/eks-terraformer/terrafomer/.terraform*
+/eks-terraformer/terrafomer/terraform.*
+/eks-terraformer/terrafomer/auto_scaling

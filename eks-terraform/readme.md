@@ -1,0 +1,1 @@
+autoscaling_group.tf와 launch_template.tf를 terraformer로 받아와 새로운 node group을 만듬

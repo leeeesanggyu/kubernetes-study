@@ -11,9 +11,9 @@ resource "aws_eks_node_group" "test-eks-nodegroup" {
   }
 
   scaling_config {
-    desired_size = 2
+    desired_size = 1
     min_size     = 1
-    max_size     = 3
+    max_size     = 1
   }
 
   depends_on = [
@@ -24,5 +24,28 @@ resource "aws_eks_node_group" "test-eks-nodegroup" {
 
   tags = {
     "Name" = "${aws_eks_cluster.test-eks-cluster.name}-worker-node"
+  }
+}
+
+resource "aws_eks_node_group" "test-eks-nodegroup2" {
+  cluster_name    = aws_eks_cluster.test-eks-cluster.name
+  node_group_name = "test-eks-nodegroup2"
+  node_role_arn   = aws_iam_role.test-iam-role-eks-nodegroup.arn
+  subnet_ids      = ["subnet-06c1620b8ca92943d","subnet-089269c1c596da59e"]
+#  instance_types = ["t3a.medium"]
+#  disk_size = 20
+
+  labels = {
+    "role" = "eks-nodegroup"
+  }
+
+  scaling_config {
+    desired_size = 1
+    min_size     = 1
+    max_size     = 1
+  }
+
+  tags = {
+    "Name" = "${aws_eks_cluster.test-eks-cluster.name}-worker-node2"
   }
 }

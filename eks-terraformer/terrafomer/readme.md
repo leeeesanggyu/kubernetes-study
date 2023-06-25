@@ -1,0 +1,1 @@
+auto_scaling을 terraformer로 받아오기 위해 만듬

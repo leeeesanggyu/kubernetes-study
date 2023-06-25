@@ -1,0 +1,1 @@
+Terraform Lock을 위해 S3와 DynamoDB를 생성하기 위한 용도
