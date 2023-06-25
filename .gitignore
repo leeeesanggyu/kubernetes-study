@@ -2,8 +2,6 @@ eks-terraform/.terraform
 eks-terraform/.terraform*
 eks-terraform/terraform*
 eks-terraform/terraform.*
-eks-terraform/terraform.tfstate
-eks-terraform/terraform.tfstate.backup
 
 eks-terraformer/backend/.terraform
 eks-terraformer/backend/.terraform*
