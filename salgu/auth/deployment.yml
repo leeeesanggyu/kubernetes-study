@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+  namespace: auth
+  labels:
+    app: auth
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+
+  template:
+    metadata:
+      labels:
+        app: auth
+
+    spec:
+      containers:
+      - name: auth
+        image: salgu-auth:v1
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 18080
+        env:
+        - name: PROFILE
+          value: dev
+#        - name: DB_URL
+#          value: 192.168.35.187
+        - name: API_URL
+          value: api.api.svc.cluster.local:18080
