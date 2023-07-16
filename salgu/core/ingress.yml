@@ -6,14 +6,14 @@ metadata:
   labels:
     app: ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-
+    nginx.ingress.kubernetes.io/rewrite-target: /$2  # path의 (.*)에서 획득한 경로를 전달.
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - http:
       paths:
       - pathType: Prefix
-        path: /
+        path: /auth(/|$)(.*)   # (.*)을 통해 경로를 얻습니다.
         backend:
           service:
             name: auth
