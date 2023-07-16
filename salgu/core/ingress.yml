@@ -5,25 +5,28 @@ metadata:
   namespace: core
   labels:
     app: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 
 spec:
   rules:
   - http:
       paths:
       - pathType: Prefix
-        path: /auth
+        path: /
         backend:
           service:
             name: auth
-            namespace: auth
             port:
-              number: 18080
+              number: 18081
+#            name: auth-headless-service
+#            port:
+#              number: 18081
 
-      - pathType: Prefix
-        path: /api
-        backend:
-          service:
-            name: api
-            namespace: api
-            port:
-              number: 18080
+#      - pathType: Prefix
+#        path: /api
+#        backend:
+#          service:
+#            name: api
+#            port:
+#              number: 18080
