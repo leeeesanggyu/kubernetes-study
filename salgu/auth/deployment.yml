@@ -33,4 +33,4 @@ spec:
 #        - name: DB_URL
 #          value: 192.168.35.187
         - name: API_URL
-          value: api.api.svc.cluster.local:18080
+          value: api.core.svc.cluster.local:18080
