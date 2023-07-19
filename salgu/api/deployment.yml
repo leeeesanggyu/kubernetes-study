@@ -5,8 +5,10 @@ metadata:
   namespace: core
   labels:
     app: api
+  annotations:
+    kubernetes.io/change-cause: "v4 rolling update"
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: api
@@ -17,7 +19,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: salgu-api:v3
+        image: salgu-api:v4
         resources:
           limits:
             memory: "256Mi"
@@ -38,3 +40,8 @@ spec:
           successThreshold: 1     # 몇개 성공 시 실패 횟수를 초기화할 것인가
           failureThreshold: 1     # 연속으로 몇번 실패 했을때 컨테이너를 재시작할 것인가
           timeoutSeconds: 5       # 응답을 몇초만에 받아야 하는가
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
