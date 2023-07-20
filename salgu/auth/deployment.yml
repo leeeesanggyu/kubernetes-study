@@ -29,7 +29,10 @@ spec:
         - containerPort: 18080
         env:
         - name: PROFILE
-          value: dev
+          valueFrom:
+            configMapKeyRef:
+              name: profiles
+              key: profiles
 #        - name: DB_URL
 #          value: 192.168.35.187
         - name: API_URL

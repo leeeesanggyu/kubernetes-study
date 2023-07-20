@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: profiles
+  namespace: core
+  labels:
+    app: api
+data:
+  profiles: dev

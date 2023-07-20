@@ -6,9 +6,9 @@ metadata:
   labels:
     app: api
   annotations:
-    kubernetes.io/change-cause: "v4 rolling update"
+    kubernetes.io/change-cause: version update.
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: api
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: salgu-api:v4
+        image: salgu-api:v9
         resources:
           limits:
             memory: "256Mi"
@@ -28,7 +28,12 @@ spec:
         - containerPort: 18080
         env:
         - name: PROFILE
-          value: dev
+          valueFrom:
+            configMapKeyRef:
+              name: profiles
+              key: profiles
+        - name: VERSION
+          value: v9
 #        - name: DB_URL
 #          value: 192.168.35.187
         livenessProbe:
