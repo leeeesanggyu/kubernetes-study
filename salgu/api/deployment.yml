@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: salgu-api:v9
+        image: salgu-api:v10
         resources:
           limits:
             memory: "256Mi"

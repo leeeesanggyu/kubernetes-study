@@ -20,14 +20,18 @@ spec:
           service:
             name: auth
             port:
-              number: 18081
-#            name: auth-headless-service
-#            port:
-#              number: 18081
+              number: 18080
       - pathType: Prefix
-        path: /api(/|$)(.*)   # (.*)을 통해 경로를 얻습니다.
+        path: /api(/|$)(.*)
         backend:
           service:
             name: api
+            port:
+              number: 18080
+      - pathType: Prefix
+        path: /payment(/|$)(.*)
+        backend:
+          service:
+            name: payment
             port:
               number: 18080

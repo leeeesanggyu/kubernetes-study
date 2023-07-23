@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  namespace: core
+  labels:
+    app: payment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+
+  template:
+    metadata:
+      labels:
+        app: payment
+
+    spec:
+      containers:
+      - name: payment
+        image: salgu-payment:v1
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 18080
+        env:
+        - name: PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: profiles
+              key: profiles
+#        - name: DB_URL
+#          value: 192.168.35.187
+        - name: API_URL
+          value: api.core.svc.cluster.local:18080
