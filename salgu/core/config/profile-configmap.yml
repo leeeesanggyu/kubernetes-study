@@ -4,6 +4,6 @@ metadata:
   name: profiles
   namespace: core
   labels:
-    app: api
+    app: profiles
 data:
   profiles: dev
