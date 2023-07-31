@@ -16,3 +16,6 @@ spec:
     - podSelector:
         matchLabels:
           app: auth
+    - podSelector:
+        matchLabels:
+          app: payment

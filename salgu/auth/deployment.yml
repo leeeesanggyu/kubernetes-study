@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: salgu-auth:v1
+        image: salgu-auth:v2
         resources:
           limits:
             memory: "256Mi"
