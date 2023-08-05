@@ -33,7 +33,7 @@ spec:
               name: profiles
               key: profiles
         - name: VERSION
-          value: v9
+          value: v10
 #        - name: DB_URL
 #          value: 192.168.35.187
         livenessProbe:
