@@ -1,0 +1,6 @@
+name: auth
+namespace: auth
+version: v2
+replicas: 1
+profiles: dev
+
