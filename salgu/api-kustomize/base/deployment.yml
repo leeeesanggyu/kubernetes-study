@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: core
+  labels:
+    app: api
+  annotations:
+    kubernetes.io/change-cause: version update.
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: salgu-api:v10
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 18080
+        env:
+        - name: PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: profiles
+              key: profiles
+        - name: VERSION
+          value: v10
+#        - name: DB_URL
+#          value: 192.168.35.187
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 18080
+          initialDelaySeconds: 60 # 컨테이너 시작 후 몇초 후에 probe를 시작할 것인가
+          periodSeconds: 10        # probe 실행 주기
+          successThreshold: 1     # 몇개 성공 시 실패 횟수를 초기화할 것인가
+          failureThreshold: 3     # 연속으로 몇번 실패 했을때 컨테이너를 재시작할 것인가
+          timeoutSeconds: 5       # 응답을 몇초만에 받아야 하는가
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1

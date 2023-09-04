@@ -8,7 +8,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: version update.
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: api
