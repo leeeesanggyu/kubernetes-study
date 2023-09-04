@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
-  namespace: core
+  name: {{.Chart.Name}}-{{.Release.Name}}
+  namespace: {{.Values.namespace}}
   labels:
-    app: api
+    app: {{.Values.name}}
   annotations:
-    kubernetes.io/change-cause: version update.
+    kubernetes.io/change-cause: {{.Values.changeCause}}
 spec:
-  replicas: 3
+  replicas: {{.Values.replicas}}
   selector:
     matchLabels:
-      app: api
+      app: {{.Values.name}}
   template:
     metadata:
       labels:
-        app: api
+        app: {{.Values.name}}
     spec:
       containers:
-      - name: api
-        image: salgu-api:v10
+      - name: {{.Values.name}}
+        image: salgu-{{.Values.name}}:{{.Values.version}}
         resources:
           limits:
-            memory: "256Mi"
-            cpu: "250m"
+            memory: {{.Values.memory}}
+            cpu: {{.Values.cpu}}
         ports:
-        - containerPort: 18080
+        - containerPort: {{.Values.containerPort}}
         env:
         - name: PROFILE
           valueFrom:
@@ -33,7 +33,7 @@ spec:
               name: profiles
               key: profiles
         - name: VERSION
-          value: v10
+          value: {{.Values.version}}
 #        - name: DB_URL
 #          value: 192.168.35.187
         livenessProbe:

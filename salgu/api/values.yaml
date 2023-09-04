@@ -1,0 +1,19 @@
+name: api
+namespace: core
+version: v10
+replicas: 1
+profiles: dev
+changeCause: version update.
+servicePort: 18080
+containerPort: 18080
+memory: "256Mi"
+cpu: "250m"
+
+networkPolicy:
+  fromPodLabels:
+    - podSelector:
+        matchLabels:
+          app: auth
+    - podSelector:
+        matchLabels:
+          app: payment
